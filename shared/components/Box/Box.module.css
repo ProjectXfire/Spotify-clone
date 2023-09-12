@@ -1,0 +1,18 @@
+.box {
+  width: 100%;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 0.5rem;
+  background-color: var(--main-color);
+  overflow: hidden;
+}
+
+.box--height {
+  height: 100dvh;
+}
+
+.no-padding {
+  padding: 0;
+}

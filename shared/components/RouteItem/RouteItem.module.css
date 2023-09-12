@@ -1,0 +1,17 @@
+.route-item {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  transition: all 200ms;
+}
+
+.route-item:hover {
+  background-color: var(--bg-color);
+}
+
+.active {
+  background-color: var(--bg-color);
+}
