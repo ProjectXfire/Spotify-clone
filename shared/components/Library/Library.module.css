@@ -1,0 +1,33 @@
+.library {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.library-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.library-item__text {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.library-item__action {
+  background-color: transparent;
+  border: none;
+  color: var(--info-color);
+  cursor: pointer;
+}
+
+.library-item__action:hover {
+  color: var(--bg-color);
+}
+
+.library-item__action:active {
+  transform: scale(0.8);
+}

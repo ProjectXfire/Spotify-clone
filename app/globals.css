@@ -4,12 +4,25 @@
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono',
     'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono',
     'Courier New', monospace;
+  --main-color: #0b3650;
+  --secondary-color: #075985;
+  --info-color: #cbd5e1;
+  --success-color: #22c55e;
+  --error-color: #ef4444;
+  --bg-color: #0f172a;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+a,
+button {
+  font-family: inherit;
+  color: white;
+  text-decoration: none;
 }
 
 html,

@@ -1,0 +1,21 @@
+.header {
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--secondary-color);
+  background: linear-gradient(180deg, var(--secondary-color) 20%, var(--main-color) 100%);
+}
+
+.header__navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__navigations {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
