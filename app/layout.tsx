@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
-      <Providers>
-        <body className={capriola.className}>
+      <body className={capriola.className}>
+        <Providers>
           <Sidebar>{children}</Sidebar>
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 }
