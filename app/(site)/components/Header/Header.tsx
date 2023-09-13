@@ -2,14 +2,41 @@
 
 import { useRouter } from 'next/navigation';
 import styles from './Header.module.css';
-import { ArrowCircleLeft, ArrowCircleRight, Home, Search } from '@mui/icons-material';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useDialog } from '@/shared/states';
+import { useUser } from '../../hooks';
+import { ArrowCircleLeft, ArrowCircleRight, Home, Search, Person } from '@mui/icons-material';
 import { Button, IconButton, Box, Typography } from '@mui/material';
-import { ListItems } from '..';
+import { AuthDialog, ListItems } from '..';
+import toast from 'react-hot-toast';
 
 function Header(): JSX.Element {
   const router = useRouter();
+  const open = useDialog((state) => state.open);
+  const setComponent = useDialog((state) => state.setComponent);
 
-  const onSignIn = (): void => {};
+  const supabaseClient = useSupabaseClient();
+  const { user } = useUser();
+
+  const onNavigate = (path: string): void => {
+    router.push(path);
+  };
+
+  const onSignIn = (): void => {
+    open();
+    setComponent(<AuthDialog />);
+  };
+
+  const onLogout = async (): Promise<void> => {
+    const { error } = await supabaseClient.auth.signOut();
+    // Reset any playing song
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success('Logged out');
+    }
+    router.refresh();
+  };
 
   return (
     <header className={styles.header}>
@@ -49,18 +76,46 @@ function Header(): JSX.Element {
           </IconButton>
         </div>
         <Box sx={{ flex: 1 }} />
-        <Button
-          type='button'
-          variant='contained'
-          color='secondary'
-          disableElevation
-          onClick={onSignIn}
-        >
-          <Typography fontSize='0.8rem'>Sign Up</Typography>
-        </Button>
-        <Button type='button' variant='contained' color='info' disableElevation onClick={onSignIn}>
-          <Typography fontSize='0.8rem'>Log In</Typography>
-        </Button>
+        {user ? (
+          <>
+            <Button
+              sx={{ borderRadius: 20 }}
+              type='button'
+              variant='contained'
+              color='info'
+              disableElevation
+              onClick={onLogout}
+            >
+              <Typography fontSize='0.8rem'>Logout</Typography>
+            </Button>
+            <IconButton type='button' onClick={() => onNavigate('/account')}>
+              <Person />
+            </IconButton>
+          </>
+        ) : (
+          <>
+            <Button
+              sx={{ borderRadius: 20 }}
+              type='button'
+              variant='contained'
+              color='secondary'
+              disableElevation
+              onClick={onSignIn}
+            >
+              <Typography fontSize='0.8rem'>Sign Up</Typography>
+            </Button>
+            <Button
+              sx={{ borderRadius: 20 }}
+              type='button'
+              variant='contained'
+              color='info'
+              disableElevation
+              onClick={onSignIn}
+            >
+              <Typography fontSize='0.8rem'>Log In</Typography>
+            </Button>
+          </>
+        )}
       </div>
       <Typography variant='h5' fontWeight='bold'>
         Welcome back

@@ -4,7 +4,6 @@ import NextImage from 'next/image';
 import { useRouter } from 'next/navigation';
 import styles from './ListItem.module.css';
 import { PlayCircleFilled } from '@mui/icons-material';
-import { Box } from '@mui/material';
 
 interface Props {
   image: string;
@@ -21,7 +20,7 @@ function ListItems({ name, image, href }: Props): JSX.Element {
   };
 
   return (
-    <button className={styles['liked-song']} type='button'>
+    <button className={styles['liked-song']} type='button' onClick={onClick}>
       <NextImage src={image} width={60} height={60} alt='liked' />
       <div className={styles['liked-song__text']}>
         <p>{name}</p>
