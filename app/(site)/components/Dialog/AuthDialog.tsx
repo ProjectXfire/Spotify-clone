@@ -23,7 +23,7 @@ function AuthDialog(): JSX.Element {
   }, [session, router, close]);
 
   return (
-    <div className={styles['auth-dialog']}>
+    <div className={styles.dialog}>
       <Typography variant='h6' fontWeight='bold' textAlign='center'>
         Welcome back
       </Typography>

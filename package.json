@@ -22,15 +22,19 @@
     "@types/react-dom": "18.2.7",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "formik": "^2.4.4",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
     "stripe": "^13.5.0",
     "typescript": "5.2.2",
+    "uniqid": "^5.4.0",
+    "yup": "^1.2.0",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "@types/uniqid": "^5.3.2",
     "prettier": "^3.0.3",
     "supabase": ">=1.8.1"
   }

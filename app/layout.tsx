@@ -1,4 +1,4 @@
-import { Providers, Sidebar } from '@/shared/components';
+import { Loading, Providers, Sidebar } from '@/shared/components';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Capriola } from 'next/font/google';
@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body className={capriola.className}>
         <Providers>
+          <Loading />
           <CustomDialog />
           <Sidebar>{children}</Sidebar>
         </Providers>
