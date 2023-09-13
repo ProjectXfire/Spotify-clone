@@ -2,6 +2,7 @@ import { Providers, Sidebar } from '@/shared/components';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Capriola } from 'next/font/google';
+import CustomDialog from '@/shared/components/CustomDialog';
 
 const capriola = Capriola({ subsets: ['latin'], weight: '400' });
 
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body className={capriola.className}>
         <Providers>
+          <CustomDialog />
           <Sidebar>{children}</Sidebar>
         </Providers>
       </body>
