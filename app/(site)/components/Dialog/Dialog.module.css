@@ -1,5 +1,18 @@
-.auth-dialog {
+.dialog {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.dialog-song {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dialog-song__actions {
+  display: flex;
+  align-self: flex-end;
+  gap: 8px;
 }
