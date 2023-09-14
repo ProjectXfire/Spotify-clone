@@ -3,14 +3,16 @@
 import { useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './Sidebar.module.css';
+import { ISong } from '@/app/(site)/types';
 import { Home, Search } from '@mui/icons-material';
 import { Box, Library, RouteItem } from '..';
 
 interface Props {
   children: React.ReactNode;
+  songs: ISong[];
 }
 
-function Sidebar({ children }: Props): JSX.Element {
+function Sidebar({ children, songs }: Props): JSX.Element {
   const pathname = usePathname();
 
   const routes = useMemo(
@@ -30,7 +32,7 @@ function Sidebar({ children }: Props): JSX.Element {
           ))}
         </Box>
         <Box fullHeight>
-          <Library />
+          <Library songs={songs} />
         </Box>
       </nav>
       <main className={styles.content}>{children}</main>
