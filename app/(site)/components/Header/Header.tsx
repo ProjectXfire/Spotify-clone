@@ -1,16 +1,22 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 import styles from './Header.module.css';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useDialog } from '@/shared/states';
 import { useUser } from '../../hooks';
 import { ArrowCircleLeft, ArrowCircleRight, Home, Search, Person } from '@mui/icons-material';
 import { Button, IconButton, Box, Typography } from '@mui/material';
-import { AuthDialog, ListItems } from '..';
-import toast from 'react-hot-toast';
+import { AuthDialog } from '..';
+import { useDebounce } from '@/shared/hooks/useDebounce';
+import { useEffect, useState } from 'react';
 
-function Header(): JSX.Element {
+interface Props {
+  title: string;
+}
+
+function Header({ title }: Props): JSX.Element {
   const router = useRouter();
   const open = useDialog((state) => state.open);
   const setComponent = useDialog((state) => state.setComponent);
@@ -118,9 +124,8 @@ function Header(): JSX.Element {
         )}
       </div>
       <Typography variant='h5' fontWeight='bold'>
-        Welcome back
+        {title}
       </Typography>
-      <ListItems image='/liked.png' name='Liked songs' href='' />
     </header>
   );
 }

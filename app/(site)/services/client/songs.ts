@@ -1,13 +1,13 @@
 import uniqid from 'uniqid';
 import { SupabaseClient } from '@supabase/auth-helpers-react';
-import { type ICreateSongDto } from '../dtos';
 import { type IResponse } from '@/shared/types';
+import { type ICreateSongDto } from '../../dtos';
 
 export async function addNewSong(
   values: ICreateSongDto,
   userId: string,
   client: SupabaseClient<any, 'public', any>
-): Promise<IResponse<any>> {
+): Promise<IResponse<null>> {
   const { title, author, image, song } = values;
   try {
     if (!song || !image)

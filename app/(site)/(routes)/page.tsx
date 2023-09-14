@@ -1,11 +1,17 @@
+import { getSongs } from '../services/server';
 import { Box } from '@/shared/components';
-import { Header, Songs } from '../components';
+import { Header, ListItems, Songs } from '../components';
 
-export default function Home() {
+export const revalidate = 0;
+
+export default async function Home(): Promise<JSX.Element> {
+  const { data } = await getSongs();
+
   return (
     <Box fullHeight noPadding>
-      <Header />
-      <Songs />
+      <Header title='Welcome back' />
+      <ListItems image='/liked.png' name='Liked songs' href='' />
+      <Songs songs={data} title='Newest songs' />
     </Box>
   );
 }

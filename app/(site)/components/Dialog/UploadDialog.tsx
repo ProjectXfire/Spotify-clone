@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import styles from './Dialog.module.css';
 import { type ICreateSongDto } from '../../dtos';
 import { SongSchema } from '../../schemas';
-import { addNewSong } from '../../services';
+import { addNewSong } from '../../services/client';
 import { useUser } from '../../hooks';
 import { useDialog, useLoading } from '@/shared/states';
 import { Button, TextField, Typography } from '@mui/material';

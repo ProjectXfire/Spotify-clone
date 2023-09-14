@@ -1,13 +1,19 @@
 'use client';
 
 import styles from './Library.module.css';
+import { type ISong } from '@/app/(site)/types';
 import { useDialog } from '@/shared/states';
 import { useUser } from '@/app/(site)/hooks';
 import { LibraryMusic, Add } from '@mui/icons-material';
-import { LibItem } from '..';
+import { List } from '@mui/material';
+import { LibItem, MediaItem } from '..';
 import { AuthDialog, UploadDialog } from '@/app/(site)/components';
 
-function Library(): JSX.Element {
+interface Props {
+  songs: ISong[];
+}
+
+function Library({ songs }: Props): JSX.Element {
   const open = useDialog((state) => state.open);
   const setComponent = useDialog((state) => state.setComponent);
   const { user } = useUser();
@@ -30,7 +36,11 @@ function Library(): JSX.Element {
         actionIcon={<Add />}
         onClick={onAddModal}
       />
-      <div>List of songs</div>
+      <List dense disablePadding>
+        {songs.map((song) => (
+          <MediaItem key={song.id} song={song} />
+        ))}
+      </List>
     </div>
   );
 }
