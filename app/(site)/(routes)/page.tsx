@@ -10,7 +10,7 @@ export default async function Home(): Promise<JSX.Element> {
   return (
     <Box fullHeight noPadding>
       <Header title='Welcome back' />
-      <ListItems image='/liked.png' name='Liked songs' href='' />
+      <ListItems image='/liked.png' name='Liked songs' href='/liked' />
       <Songs songs={data} title='Newest songs' />
     </Box>
   );

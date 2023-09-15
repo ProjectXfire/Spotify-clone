@@ -8,15 +8,14 @@ import { useDialog } from '@/shared/states';
 import { useUser } from '../../hooks';
 import { ArrowCircleLeft, ArrowCircleRight, Home, Search, Person } from '@mui/icons-material';
 import { Button, IconButton, Box, Typography } from '@mui/material';
-import { AuthDialog } from '..';
-import { useDebounce } from '@/shared/hooks/useDebounce';
-import { useEffect, useState } from 'react';
+import { AuthDialog, Liked } from '..';
 
 interface Props {
-  title: string;
+  title?: string;
+  liked?: boolean;
 }
 
-function Header({ title }: Props): JSX.Element {
+function Header({ title, liked }: Props): JSX.Element {
   const router = useRouter();
   const open = useDialog((state) => state.open);
   const setComponent = useDialog((state) => state.setComponent);
@@ -123,9 +122,12 @@ function Header({ title }: Props): JSX.Element {
           </>
         )}
       </div>
-      <Typography variant='h5' fontWeight='bold'>
-        {title}
-      </Typography>
+      {title && (
+        <Typography variant='h5' fontWeight='bold'>
+          {title}
+        </Typography>
+      )}
+      {liked && <Liked />}
     </header>
   );
 }

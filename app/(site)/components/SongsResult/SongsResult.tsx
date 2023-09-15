@@ -10,7 +10,7 @@ function SongsResult({ songs }: Props): JSX.Element {
   return (
     <List disablePadding>
       {songs.map((song) => (
-        <MediaItem key={song.id} song={song} forSearch />
+        <MediaItem key={song.id} song={song} inList />
       ))}
     </List>
   );
