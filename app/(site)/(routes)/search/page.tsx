@@ -2,6 +2,8 @@ import { getSongsByTitle } from '../../services/server';
 import { Header, SongsResult } from '../../components';
 import { Box, Search } from '@/shared/components';
 
+export const revalidate = 0;
+
 interface Props {
   searchParams: { title: string };
 }

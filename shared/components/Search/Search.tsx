@@ -31,8 +31,6 @@ function Search({ queryName }: Props): JSX.Element {
     }
   }, [debouncedValue, queryName, router]);
 
-  console.log('called');
-
   return (
     <TextField
       sx={{ width: { md: 400 }, mx: 1 }}

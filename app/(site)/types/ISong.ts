@@ -6,3 +6,9 @@ export interface ISong {
   song_path: string;
   image_path: string;
 }
+
+export interface ILikedSong {
+  user_id: string;
+  song_id: string;
+  songs: ISong;
+}
