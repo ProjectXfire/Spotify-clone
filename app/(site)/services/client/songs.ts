@@ -1,6 +1,7 @@
 import uniqid from 'uniqid';
 import { SupabaseClient } from '@supabase/auth-helpers-react';
 import { type IResponse } from '@/shared/types';
+import { type ISong } from '../../types';
 import { type ICreateSongDto } from '../../dtos';
 
 export async function addNewSong(
@@ -57,6 +58,39 @@ export async function addNewSong(
     return {
       data: null,
       message: 'Song successfully created',
+      errorMessage: null
+    };
+  } catch (error) {
+    return {
+      data: null,
+      message: null,
+      errorMessage: 'Something went wrong!'
+    };
+  }
+}
+
+export async function getSongById(
+  songId: string,
+  client: SupabaseClient<any, 'public', any>
+): Promise<IResponse<ISong | null>> {
+  try {
+    const { data: songData, error } = await client
+      .from('songs')
+      .select('*')
+      .eq('id', songId)
+      .single();
+    if (error)
+      return {
+        data: null,
+        message: null,
+        errorMessage: error.message
+      };
+    const {
+      data: { publicUrl }
+    } = client.storage.from('songs').getPublicUrl(songData.song_path);
+    return {
+      data: { ...songData, public_song_url: publicUrl },
+      message: 'Song loaded',
       errorMessage: null
     };
   } catch (error) {

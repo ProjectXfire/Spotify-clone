@@ -7,7 +7,7 @@ import { useSessionContext } from '@supabase/auth-helpers-react';
 import { type ISong } from '@/app/(site)/types';
 import { getLikedSong, removeLikedSong, setLikedSong } from '@/app/(site)/services/client';
 import { useLoadImage, useUser } from '@/app/(site)/hooks';
-import { PlayCircle, FavoriteBorder, Favorite } from '@mui/icons-material';
+import { FavoriteBorder, Favorite } from '@mui/icons-material';
 import {
   Avatar,
   Box,
@@ -23,10 +23,11 @@ import { AuthDialog } from '@/app/(site)/components';
 
 interface Props {
   song: ISong;
-  inList?: boolean;
+  likedButton?: boolean;
+  onPlay?: (id: string) => void;
 }
 
-function MediaItem({ song, inList }: Props): JSX.Element {
+function MediaItem({ song, likedButton, onPlay }: Props): JSX.Element {
   const imagePath = useLoadImage(song.image_path);
   const { user } = useUser();
   const { supabaseClient } = useSessionContext();
@@ -35,7 +36,9 @@ function MediaItem({ song, inList }: Props): JSX.Element {
   const setComponent = useDialog((state) => state.setComponent);
   const [liked, setLiked] = useState(false);
 
-  const handleClick = (): void => {};
+  const startPlaying = (): void => {
+    if (onPlay) onPlay(song.id);
+  };
 
   const handleFavorite = async (value: boolean) => {
     if (!user) {
@@ -70,15 +73,15 @@ function MediaItem({ song, inList }: Props): JSX.Element {
   };
 
   useEffect(() => {
-    if (inList) onGetLikedSong();
-  }, []);
+    if (likedButton) onGetLikedSong();
+  }, [user]);
 
   return (
     <ListItem
       disablePadding
-      onClick={handleClick}
+      onClick={startPlaying}
       secondaryAction={
-        inList ? (
+        likedButton && (
           <Box sx={{ display: 'flex', mr: 0 }}>
             {liked ? (
               <IconButton color='error' type='button' onClick={() => handleFavorite(false)}>
@@ -89,18 +92,11 @@ function MediaItem({ song, inList }: Props): JSX.Element {
                 <FavoriteBorder fontSize='large' />
               </IconButton>
             )}
-            <IconButton>
-              <PlayCircle fontSize='large' />
-            </IconButton>
           </Box>
-        ) : (
-          <IconButton sx={{ mr: -2 }}>
-            <PlayCircle fontSize='large' />
-          </IconButton>
         )
       }
     >
-      <ListItemButton disableRipple disableGutters sx={{ px: 0.5 }}>
+      <ListItemButton sx={{ px: 0.5 }}>
         <ListItemAvatar sx={{ minWidth: 50 }}>
           <Avatar sx={{ width: 40, height: 40 }} alt={song.title} src={imagePath} />
         </ListItemAvatar>

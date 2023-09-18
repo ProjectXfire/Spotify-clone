@@ -1,5 +1,8 @@
+'use client';
+
 import styles from './Songs.module.css';
 import { type ISong } from '../../types';
+import { useOnPlay } from '../../hooks';
 import { Typography } from '@mui/material';
 import { SongItem } from '..';
 
@@ -9,6 +12,8 @@ interface Props {
 }
 
 function Songs({ songs, title }: Props): JSX.Element {
+  const onPlay = useOnPlay(songs);
+
   return (
     <section className={styles['songs-container']}>
       <Typography sx={{ mb: 2 }} variant='h5'>
@@ -21,7 +26,7 @@ function Songs({ songs, title }: Props): JSX.Element {
       ) : (
         <ul className={styles['songs-list']}>
           {songs.map((song) => (
-            <SongItem key={song.id} song={song} />
+            <SongItem key={song.id} song={song} onPlay={onPlay} />
           ))}
         </ul>
       )}

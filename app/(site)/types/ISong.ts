@@ -5,6 +5,7 @@ export interface ISong {
   title: string;
   song_path: string;
   image_path: string;
+  public_song_url?: string;
 }
 
 export interface ILikedSong {

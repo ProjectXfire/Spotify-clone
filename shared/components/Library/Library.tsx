@@ -3,7 +3,7 @@
 import styles from './Library.module.css';
 import { type ISong } from '@/app/(site)/types';
 import { useDialog } from '@/shared/states';
-import { useUser } from '@/app/(site)/hooks';
+import { useOnPlay, useUser } from '@/app/(site)/hooks';
 import { LibraryMusic, Add } from '@mui/icons-material';
 import { List } from '@mui/material';
 import { LibItem, MediaItem } from '..';
@@ -16,6 +16,7 @@ interface Props {
 function Library({ songs }: Props): JSX.Element {
   const open = useDialog((state) => state.open);
   const setComponent = useDialog((state) => state.setComponent);
+  const onPlay = useOnPlay(songs);
   const { user } = useUser();
 
   const onAddModal = (): void => {
@@ -38,7 +39,7 @@ function Library({ songs }: Props): JSX.Element {
       />
       <List dense disablePadding>
         {songs.map((song) => (
-          <MediaItem key={song.id} song={song} />
+          <MediaItem key={song.id} song={song} onPlay={onPlay} />
         ))}
       </List>
     </div>

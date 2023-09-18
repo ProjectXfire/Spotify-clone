@@ -17,7 +17,7 @@ function LikedSongs({ songs }: Props): JSX.Element {
   return (
     <List disablePadding>
       {songs.map((song) => (
-        <MediaItem key={song.songs?.id} song={song.songs} inList />
+        <MediaItem key={song.songs?.id} song={song.songs} likedButton />
       ))}
     </List>
   );

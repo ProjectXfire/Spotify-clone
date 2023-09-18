@@ -5,14 +5,20 @@
   display: flex;
   align-items: center;
   border: none;
-  border-radius: 8px;
-  overflow: hidden;
   background: var(--main-color);
   color: var(--info-color);
   cursor: pointer;
 }
 
+.liked-song img {
+  height: 50px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
 .liked-song__text {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   padding: 8px;
   height: 100%;
   width: 100%;
