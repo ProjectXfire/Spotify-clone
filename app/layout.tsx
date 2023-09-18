@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Capriola } from 'next/font/google';
 import CustomDialog from '@/shared/components/CustomDialog';
 import { getSongsBySessionId } from './(site)/services/server';
+import { Player } from './(site)/components';
 
 const capriola = Capriola({ subsets: ['latin'], weight: '400' });
 export const revalidate = 0;
@@ -27,6 +28,7 @@ export default async function RootLayout({
           <Loading />
           <CustomDialog />
           <Sidebar songs={data}>{children}</Sidebar>
+          <Player />
         </Providers>
       </body>
     </html>
